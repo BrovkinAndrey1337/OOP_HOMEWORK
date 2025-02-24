@@ -5,21 +5,16 @@ from src.product import Product
 
 
 @pytest.fixture
-def product_koumiss():
-    product = Product("Кумыс", "Райское наслаждение", 13.37, 5)
-    return product
-
-
-@pytest.fixture
-def product_beer():
-    product = Product("Пиво", "Будущее будет светлым и нефильтрованным", 22.8, 1)
-    return product
-
-
-@pytest.fixture
-def category_of_2_products(product_koumiss, product_beer):
-    category1 = Category(
-        "2 на выбор", "Выбирай любое, не ошибешься", [product_beer, product_koumiss]
+def sample_product():
+    return Product(
+        name="Товар 1", description="Описание товара 1", price=100.0, quantity=10
     )
-    category2 = Category("1 на выбор", "Возьми меня", [product_beer])
-    return category1, category2
+
+
+@pytest.fixture
+def sample_category(sample_product):
+    return Category(
+        name="Категория 1",
+        description="Описание категории 1",
+        products=[sample_product],
+    )
