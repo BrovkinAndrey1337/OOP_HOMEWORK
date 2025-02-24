@@ -12,6 +12,19 @@ class Category:
     def __init__(self, name: str, description: str, products: List[Product]):
         self.name = name
         self.description = description
-        self.products = products
+        self.__products = products
         Category.total_categories += 1
         Category.total_products += len(products)
+
+    def add_product(self, product: Product):
+        """Добавляет продукт в категорию"""
+        self.__products.append(product)
+        Category.total_products += 1
+
+    @property
+    def show_products(self):
+        """Возвращает список продуктов в формате строки"""
+        products_str = ""
+        for product in self.__products:
+            products_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+        return products_str.strip()
