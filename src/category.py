@@ -17,7 +17,9 @@ class Category:
         Category.total_products += len(products)
 
     def add_product(self, product: Product):
-        """Добавляет продукт в категорию"""
+        """Добавляет продукт в категорию, проверяя его тип"""
+        if not isinstance(product, Product):
+            raise TypeError("Добавляемый объект должен быть экземпляром класса Product")
         self.__products.append(product)
         Category.total_products += 1
 
@@ -28,3 +30,4 @@ class Category:
         for product in self.__products:
             products_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
         return products_str.strip()
+
