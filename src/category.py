@@ -22,7 +22,7 @@ class Category:
         Category.total_products += 1
 
     @property
-    def show_products(self):
+    def products(self):
         """Возвращает список продуктов в формате строки"""
         products_str = ""
         for product in self.__products:
