@@ -17,6 +17,13 @@ class Product:
         """Возвращает строковое представление продукта"""
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
+    def __add__(self, other):
+        """Складывает стоимость двух продуктов с учетом их количества"""
+        if not isinstance(other, Product):
+            raise TypeError("Добавляемый объект должен быть экземпляром класса Product")
+        total_value = (self.price * self.quantity) + (other.price * other.quantity)
+        return total_value
+
     @classmethod
     def new_product(cls, product_data: Dict[str, Any]):
         """Создает новый продукт или обновляет существующий"""
