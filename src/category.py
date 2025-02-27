@@ -26,8 +26,5 @@ class Category:
     @property
     def products(self):
         """Возвращает список продуктов в формате строки"""
-        products_str = ""
-        for product in self.__products:
-            products_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
-        return products_str.strip()
+        return "\n".join(str(product) for product in self.__products).strip()
 

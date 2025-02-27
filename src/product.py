@@ -13,6 +13,10 @@ class Product:
         self.quantity = quantity
         Product._products.append(self)
 
+    def __str__(self):
+        """Возвращает строковое представление продукта"""
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
     @classmethod
     def new_product(cls, product_data: Dict[str, Any]):
         """Создает новый продукт или обновляет существующий"""
