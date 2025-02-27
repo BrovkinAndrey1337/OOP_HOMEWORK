@@ -23,6 +23,10 @@ class Category:
         self.__products.append(product)
         Category.total_products += 1
 
+    def __str__(self):
+        """Возвращает строковое представление категории"""
+        return f"{self.name}, количество продуктов: {len(self.__products)} шт."
+
     @property
     def products(self):
         """Возвращает список продуктов в формате строки"""
