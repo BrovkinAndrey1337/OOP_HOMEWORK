@@ -60,3 +60,13 @@ def test_price_setter_lower_price(sample_product, monkeypatch):
 def test_price_setter_negative_price(sample_product):
     sample_product.price = -50.0
     assert sample_product.price == 100.0
+
+
+def test_add_products(sample_product, another_product):
+    total_price = sample_product + another_product
+    assert total_price == 1750.0
+
+
+def test_str_method(sample_product):
+    expected_str = "Товар 1, 100.0 руб. Остаток: 10 шт."
+    assert str(sample_product) == expected_str

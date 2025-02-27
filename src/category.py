@@ -27,4 +27,3 @@ class Category:
     def products(self):
         """Возвращает список продуктов в формате строки"""
         return "\n".join(str(product) for product in self.__products).strip()
-
