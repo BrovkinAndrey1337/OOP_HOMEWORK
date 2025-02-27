@@ -18,3 +18,8 @@ def sample_category(sample_product):
         description="Описание категории 1",
         products=[sample_product],
     )
+
+
+@pytest.fixture
+def another_product():
+    return Product("Товар 2", "Описание товара 2", 150.0, 5)
