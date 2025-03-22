@@ -21,6 +21,8 @@ class Product:
         """Складывает стоимость двух продуктов с учетом их количества"""
         if not isinstance(other, Product):
             raise TypeError("Добавляемый объект должен быть экземпляром класса Product")
+        if not isinstance(other, type(self)):
+            raise TypeError("Нельзя складывать продукты разных классов")
         total_value = (self.price * self.quantity) + (other.price * other.quantity)
         return total_value
 
