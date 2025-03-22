@@ -1,7 +1,8 @@
 import pytest
 
 from src.product import Product
-
+from src.smartphone import Smartphone
+from src.LawnGrass import LawnGrass
 
 def test_product_initialization(sample_product):
     assert sample_product.name == "Товар 1"
@@ -70,3 +71,85 @@ def test_add_products(sample_product, another_product):
 def test_str_method(sample_product):
     expected_str = "Товар 1, 100.0 руб. Остаток: 10 шт."
     assert str(sample_product) == expected_str
+
+
+def test_smartphone_creation():
+    smartphone = Smartphone(
+        name="iPhone",
+        description="Смартфон от Apple",
+        price=999.99,
+        quantity=5,
+        efficiency="Высокая",
+        model="iPhone 14",
+        memory=128,
+        color="Черный"
+    )
+
+    assert smartphone.name == "iPhone"
+    assert smartphone.description == "Смартфон от Apple"
+    assert smartphone.price == 999.99
+    assert smartphone.quantity == 5
+    assert smartphone.efficiency == "Высокая"
+    assert smartphone.model == "iPhone 14"
+    assert smartphone.memory == 128
+    assert smartphone.color == "Черный"
+    assert str(smartphone) == (
+        "iPhone, 999.99 руб. Остаток: 5 шт., Модель: iPhone 14, "
+        "Эффективность: Высокая, Память: 128 ГБ, Цвет: Черный"
+    )
+
+
+def test_lawn_grass_creation():
+    lawn_grass = LawnGrass(
+        name="Газонная трава",
+        description="Трава для газонов",
+        price=50.0,
+        quantity=100,
+        country="Россия",
+        germination_period=14,
+        color="Зеленый"
+    )
+
+    assert lawn_grass.name == "Газонная трава"
+    assert lawn_grass.description == "Трава для газонов"
+    assert lawn_grass.price == 50.0
+    assert lawn_grass.quantity == 100
+    assert lawn_grass.country == "Россия"
+    assert lawn_grass.germination_period == 14
+    assert lawn_grass.color == "Зеленый"
+    assert str(lawn_grass) == (
+        "Газонная трава, 50.0 руб. Остаток: 100 шт., "
+        "Страна-производитель: Россия, Срок прорастания: 14 дней, Цвет: Зеленый"
+    )
+
+def test_product_addition_different_classes():
+    """Тестирование сложения продуктов разных классов"""
+    product1 = Smartphone(
+        name="iPhone",
+        description="Смартфон от Apple",
+        price=999.99,
+        quantity=1,
+        efficiency="Высокая",
+        model="iPhone 14",
+        memory=128,
+        color="Черный"
+    )
+    product2 = LawnGrass(
+        name="Газонная трава",
+        description="Трава для газонов",
+        price=50.0,
+        quantity=10,
+        country="Россия",
+        germination_period=14,
+        color="Зеленый"
+    )
+
+    with pytest.raises(TypeError, match="Нельзя складывать продукты разных классов"):
+        product1 + product2
+
+def test_product_addition_invalid_type():
+    """Тестирование сложения с объектом неправильного типа"""
+    product = Product(name="Товар", description="Описание", price=100.0, quantity=1)
+
+    with pytest.raises(TypeError, match="Добавляемый объект должен быть экземпляром класса Product"):
+        product + "не продукт"
