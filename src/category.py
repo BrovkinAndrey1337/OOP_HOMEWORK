@@ -19,7 +19,13 @@ class Category:
     def add_product(self, product: Product):
         """Добавляет продукт в категорию, проверяя его тип"""
         if not isinstance(product, Product):
-            raise TypeError("Добавляемый объект должен быть экземпляром класса Product")
+            raise TypeError(
+                "Добавляемый объект должен быть экземпляром класса Product или его наследником"
+            )
+        if not issubclass(type(product), Product):
+            raise TypeError(
+                "Добавляемый объект должен быть экземпляром класса Product или его наследником."
+            )
         self.__products.append(product)
         Category.total_products += 1
 
