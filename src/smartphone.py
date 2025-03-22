@@ -1,0 +1,30 @@
+from src.product import Product
+
+
+class Smartphone(Product):
+    """Класс смартфонов"""
+
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        efficiency: str,
+        model: str,
+        memory: int,
+        color: str,
+    ):
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+    def __str__(self):
+        """Возвращает строковое представление смартфона"""
+        return (
+            f"{super().__str__()}, Модель: {self.model}, "
+            f"Эффективность: {self.efficiency}, "
+            f"Память: {self.memory} ГБ, Цвет: {self.color}"
+        )
