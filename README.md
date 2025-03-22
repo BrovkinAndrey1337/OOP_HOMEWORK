@@ -52,6 +52,31 @@ category = Category("1 на выбор", "Возьми меня", [product])
 print(f"{category.name}, {category.description}, {category.products[0].name}, {category.total_products}, {category.total_categories}")  # Вывод: "1 на выбор, Возьми меня, Пиво, 1, 1"
 ```
 
+#### Класс `class Smartphone`
+Подкласс класса Product, класс смартфонов. Атрибуты экземляра класса указываются с помощью конструктора. 
+
+##### атрибуты экземпляра:
+- `name`: название продукта.
+- `description`: описание продукта.
+- `price`: цена за единицу продукта.
+- `quantity`: количество продукта.
+- `efficiency`: эффективность,
+- `model`: модель, 
+- `memory`: память,
+- `color`: цвет,
+
+#### Класс `class LawnGrass`
+Подкласс класса Product, класс травы газонной. Атрибуты экземляра класса указываются с помощью конструктора. 
+
+##### атрибуты экземпляра:
+- `name`: название продукта.
+- `description`: описание продукта.
+- `price`: цена за единицу продукта.
+- `quantity`: количество продукта.
+- `country`: страна-производитель,
+- `germination_period`: период прорастания, 
+- `color`: цвет,
+
 # Результаты тестирования
 
 ## Запуск тестов
@@ -59,13 +84,21 @@ print(f"{category.name}, {category.description}, {category.products[0].name}, {c
 Тесты были запущены с использованием `pytest`. 
 
 ### Покрытие теста (Coverage report)
-- src\classes.py    100%
-- Total	100%
+- src\category    87%
+- src\LawnGrass   100%
+- src\product     100%
+- src\smartphone  100%
+- Total	97%
 
 ### Результаты тестов
-#### test_classes
-Общее количество тестов: 2
-- Пройдено: 2
+#### test_category
+Общее количество тестов: 3
+- Пройдено: 3
+- Провалено: 0
+
+#### test_product
+Общее количество тестов: 13
+- Пройдено: 13
 - Провалено: 0
 
 
