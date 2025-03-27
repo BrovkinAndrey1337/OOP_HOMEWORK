@@ -151,5 +151,5 @@ def test_product_addition_invalid_type():
     """Тестирование сложения с объектом неправильного типа"""
     product = Product(name="Товар", description="Описание", price=100.0, quantity=1)
 
-    with pytest.raises(TypeError, match="Добавляемый объект должен быть экземпляром класса Product"):
+    with pytest.raises(TypeError, match="Добавляемый объект должен быть экземпляром класса BaseProduct"):
         product + "не продукт"

@@ -1,16 +1,15 @@
 from typing import Any, Dict, List
 
+from src.BaseProduct import BaseProduct
 
-class Product:
+
+class Product(BaseProduct):
     """Класс продуктов"""
 
     _products: List["Product"] = []
 
     def __init__(self, name: str, description: str, price: float, quantity: int):
-        self.name = name
-        self.description = description
-        self.__price = price
-        self.quantity = quantity
+        super().__init__(name, description, price, quantity)
         Product._products.append(self)
 
     def __str__(self):
@@ -19,8 +18,10 @@ class Product:
 
     def __add__(self, other):
         """Складывает стоимость двух продуктов с учетом их количества"""
-        if not isinstance(other, Product):
-            raise TypeError("Добавляемый объект должен быть экземпляром класса Product")
+        if not isinstance(other, BaseProduct):
+            raise TypeError(
+                "Добавляемый объект должен быть экземпляром класса BaseProduct"
+            )
         if not isinstance(other, type(self)):
             raise TypeError("Нельзя складывать продукты разных классов")
         total_value = (self.price * self.quantity) + (other.price * other.quantity)
@@ -40,27 +41,8 @@ class Product:
         for existing_product in cls._products:
             if existing_product.name == name:
                 existing_product.quantity += quantity
-                existing_product.__price = max(existing_product.__price, price)
+                existing_product.price = max(existing_product.price, price)
                 return existing_product
 
         new_product = cls(name, description, price, quantity)
         return new_product
-
-    @property
-    def price(self):
-        """Геттер для получения цены"""
-        return self.__price
-
-    @price.setter
-    def price(self, new_price: float):
-        """Сеттер для установки цены с проверкой"""
-        if new_price <= 0:
-            print("Цена не должна быть нулевая или отрицательная")
-        else:
-            if new_price < self.__price:
-                print("Вы согласны понизить цену? y - да")
-                answer = input()
-                if answer.lower() == "y":
-                    self.__price = new_price
-            else:
-                self.__price = new_price
