@@ -15,11 +15,15 @@ class Smartphone(Product):
         memory: int,
         color: str,
     ):
-        super().__init__(name, description, price, quantity)
         self.efficiency = efficiency
         self.model = model
         self.memory = memory
         self.color = color
+        super().__init__(name, description, price, quantity)
+
+    def __repr__(self):
+        """Возвращает строковое представление продукта"""
+        return f"{self.__class__.__name__}: {self.name}, {self.description}, {self.price}, {self.quantity}, {self.efficiency}, {self.model}, {self.memory}, {self.color}"
 
     def __str__(self):
         """Возвращает строковое представление смартфона"""

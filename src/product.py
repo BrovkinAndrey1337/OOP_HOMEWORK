@@ -1,9 +1,10 @@
 from typing import Any, Dict, List
 
 from src.BaseProduct import BaseProduct
+from src.MixinInfo import MixinInfo
 
 
-class Product(BaseProduct):
+class Product(MixinInfo, BaseProduct):
     """Класс продуктов"""
 
     _products: List["Product"] = []
@@ -11,6 +12,10 @@ class Product(BaseProduct):
     def __init__(self, name: str, description: str, price: float, quantity: int):
         super().__init__(name, description, price, quantity)
         Product._products.append(self)
+
+    def __repr__(self):
+        """Возвращает строковое представление продукта"""
+        return f"{self.__class__.__name__}: {self.name}, {self.description}, {self.price}, {self.quantity}"
 
     def __str__(self):
         """Возвращает строковое представление продукта"""

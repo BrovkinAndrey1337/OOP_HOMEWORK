@@ -38,3 +38,8 @@ class BaseProduct(ABC):
     def __add__(self, other):
         """Складывает стоимость двух продуктов с учетом их количества"""
         pass
+
+    @abstractmethod
+    def __repr__(self):
+        """Возвращает строковое представление продукта"""
+        pass
