@@ -65,6 +65,10 @@ print(f"{category.name}, {category.description}, {category.products[0].name}, {c
 - `memory`: память,
 - `color`: цвет,
 
+#### Класс `class MixinInfo`
+Класс-миксин для добавления в консоль информации о классе и его параметрах
+
+
 #### Класс `class LawnGrass`
 Подкласс класса Product, класс травы газонной. Атрибуты экземляра класса указываются с помощью конструктора. 
 
@@ -88,7 +92,9 @@ print(f"{category.name}, {category.description}, {category.products[0].name}, {c
 - src\LawnGrass   100%
 - src\product     100%
 - src\smartphone  100%
-- Total	97%
+- src\MixinInfo   100%
+- src\BaseProduct 90%
+- Total	95%
 
 ### Результаты тестов
 #### test_category
@@ -101,6 +107,10 @@ print(f"{category.name}, {category.description}, {category.products[0].name}, {c
 - Пройдено: 13
 - Провалено: 0
 
+#### test_mixin
+Общее количество тестов: 3
+- Пройдено: 3
+- Провалено: 0
 
 ## Лицензия
 Этот проект является открытым и может быть использован, изменён и распространён в соответствии с условиями лицензии MIT.
