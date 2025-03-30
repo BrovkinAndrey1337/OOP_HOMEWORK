@@ -19,15 +19,21 @@ class Category:
     def add_product(self, product: Product):
         """Добавляет продукт в категорию, проверяя его тип"""
         if not isinstance(product, Product):
-            raise TypeError("Добавляемый объект должен быть экземпляром класса Product")
+            raise TypeError(
+                "Добавляемый объект должен быть экземпляром класса Product или его наследником"
+            )
+        if not issubclass(type(product), Product):
+            raise TypeError(
+                "Добавляемый объект должен быть экземпляром класса Product или его наследником."
+            )
         self.__products.append(product)
         Category.total_products += 1
+
+    def __str__(self):
+        """Возвращает строковое представление категории"""
+        return f"{self.name}, количество продуктов: {len(self.__products)} шт."
 
     @property
     def products(self):
         """Возвращает список продуктов в формате строки"""
-        products_str = ""
-        for product in self.__products:
-            products_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
-        return products_str.strip()
-
+        return "\n".join(str(product) for product in self.__products).strip()
