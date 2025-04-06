@@ -37,3 +37,11 @@ class Category:
     def products(self):
         """Возвращает список продуктов в формате строки"""
         return "\n".join(str(product) for product in self.__products).strip()
+
+    def average_price(self):
+        """Возвращает среднюю цену всех товаров в категории"""
+        if len(self.__products) == 0:
+            raise ValueError("В категории нет товаров для расчета средней цены.")
+
+        total_price = sum(product.price for product in self.__products)
+        return total_price / len(self.__products)
