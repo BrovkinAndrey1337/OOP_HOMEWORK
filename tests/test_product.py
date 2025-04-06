@@ -4,6 +4,7 @@ from src.product import Product
 from src.smartphone import Smartphone
 from src.LawnGrass import LawnGrass
 
+
 def test_product_initialization(sample_product):
     assert sample_product.name == "Товар 1"
     assert sample_product.description == "Описание товара 1"
@@ -82,7 +83,7 @@ def test_smartphone_creation():
         efficiency="Высокая",
         model="iPhone 14",
         memory=128,
-        color="Черный"
+        color="Черный",
     )
 
     assert smartphone.name == "iPhone"
@@ -107,7 +108,7 @@ def test_lawn_grass_creation():
         quantity=100,
         country="Россия",
         germination_period=14,
-        color="Зеленый"
+        color="Зеленый",
     )
 
     assert lawn_grass.name == "Газонная трава"
@@ -122,6 +123,7 @@ def test_lawn_grass_creation():
         "Страна-производитель: Россия, Срок прорастания: 14 дней, Цвет: Зеленый"
     )
 
+
 def test_product_addition_different_classes():
     """Тестирование сложения продуктов разных классов"""
     product1 = Smartphone(
@@ -132,7 +134,7 @@ def test_product_addition_different_classes():
         efficiency="Высокая",
         model="iPhone 14",
         memory=128,
-        color="Черный"
+        color="Черный",
     )
     product2 = LawnGrass(
         name="Газонная трава",
@@ -141,15 +143,22 @@ def test_product_addition_different_classes():
         quantity=10,
         country="Россия",
         germination_period=14,
-        color="Зеленый"
+        color="Зеленый",
     )
 
     with pytest.raises(TypeError, match="Нельзя складывать продукты разных классов"):
         product1 + product2
 
+
 def test_product_addition_invalid_type():
     """Тестирование сложения с объектом неправильного типа"""
     product = Product(name="Товар", description="Описание", price=100.0, quantity=1)
 
-    with pytest.raises(TypeError, match="Добавляемый объект должен быть экземпляром класса BaseProduct"):
+    with pytest.raises(
+        TypeError, match="Добавляемый объект должен быть экземпляром класса BaseProduct"
+    ):
         product + "не продукт"
+
+def test_product_init_invalid_quantity():
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        Product("Товар 2", "Описание товара 2", 50.0, 0)
